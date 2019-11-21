@@ -22,13 +22,39 @@
 \end{figure}
 
 \subsubsection{Entities}
-seminar = (\{\underline{SEMINARNUMMER:STRING}\})
+seminar = (\{\underline{SEMINARNUMMER:VARCHAR}\})
 
-termin  = (\{\underline{TERMINID:STRING}, DATUM:DATE, VON:DATETIME, BIS:DATETIME\})
+termin  = (\{\underline{TERMINID:VARCHAR}, DATUM:DATE, VON:DATETIME, BIS:DATETIME\})
 
-kunde   = (\{\underline{KUNDENID:STRING}\})
+kunde   = (\{\underline{KUNDENID:VARCHAR}\})
+
+referent = (\{RID: Integer, email: VARCHAR, name: VARCHAR, vorname: VARCHAR\})
+
+seminarthema = (sThemaID: Integer, anzUnterrichtseinheiten: Integer, kurzbeschreibung:VARCHAR, maxTeilnehmerAnz: Integer, minTeilnehmerAnzahl: Integer, preis: Float, titel: VARCHAR\})
+
+externerReferent = (\{adresse: (plz: VARCHAR, ort: VARCHAR, strasse: VARCHAR, hnr: VARCHAR)\})
+
+internerReferent = (\{dienstzimmer: VARCHAR, nebenstellnummer: Integer\})
 
 \subsubsection{Relations}
+
+leiten = (referent X seminarthema)
+
+anbieten = (referent X seminarthema)
+
+is\_a = (referent X sxternerReferent)
+
+is\_a = (referent X internerReferent)
+
+gehört\_zu = (seminarthema X seminar)
+
+buchen = (seminar x kunke, BUCHUNGSDATUM:DATE, ZUSTAND:VARCHAR, RABATT:FLOAT)
+
+warteliste = (kunde x seminar, POSITION:INTEGER)
+
+wird\_gehalten\_an = (seminar x termin)
+
+
 
 \subsection{b)}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/TeX Live for SUSE Linux) (preloaded format=pdflatex 2019.11.14)  21 NOV 2019 10:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/TeX Live for SUSE Linux) (preloaded format=pdflatex 2019.11.14)  21 NOV 2019 10:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -261,11 +261,18 @@ File: Bilder/ER-Modell.PNG Graphic file (type png)
 Package pdftex.def Info: Bilder/ER-Modell.PNG  used on input line 19.
 (pdftex.def)             Requested size: 285.61511pt x 393.64297pt.
 
-Overfull \hbox (61.39165pt too wide) in paragraph at lines 27--28
-[]\T1/cmr/m/n/10 termin = ({$[]$, DA-TUM:DATE, VON:DATETIME, BIS:DATETIME}) 
+Overfull \hbox (0.11938pt too wide) in paragraph at lines 33--34
+[]\T1/cmr/m/n/10 seminarthema = (sThe-maID: In-te-ger, anz-Un-ter-richts-ein-he
+i-ten: In-te-ger, kurz-
  []
 
-[2 <./Bilder/ER-Modell.PNG>] (./DatenbankenPraktikumBericht.aux) ) 
+[2 <./Bilder/ER-Modell.PNG>]
+Overfull \hbox (27.15001pt too wide) in paragraph at lines 51--52
+[]\T1/cmr/m/n/10 buchen = (se-mi-nar x kun-ke, BU-CHUNGS-DA-TUM:DATE, ZU-STAND:
+VARCHAR,
+ []
+
+[3] (./DatenbankenPraktikumBericht.aux) ) 
 Here is how much of TeX's memory you used:
  3223 strings out of 492623
  40481 string characters out of 6137990
@@ -274,17 +281,17 @@ Here is how much of TeX's memory you used:
  16920 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,6n,25p,294b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/t
-exmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx120
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200
-.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on DatenbankenPraktikumBericht.pdf (3 pages, 167237 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-s
+uper/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfrm1728.pfb>
+Output written on DatenbankenPraktikumBericht.pdf (4 pages, 171125 bytes).
 PDF statistics:
- 46 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 49 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
