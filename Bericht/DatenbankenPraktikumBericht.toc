@@ -4,3 +4,5 @@
 \contentsline {subsubsection}{Entities}{2}% 
 \contentsline {subsubsection}{Relations}{3}% 
 \contentsline {subsection}{\numberline {0.1.2}b)}{3}% 
+\contentsline {subsubsection}{Relationen}{3}% 
+\contentsline {subsubsection}{Referenzen}{3}% 
