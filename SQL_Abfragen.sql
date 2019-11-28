@@ -8,5 +8,16 @@ SELECT(
 
 );
 
+SELECT seminarnnummer, COUNT(seminarnnummer)
+FROM g8_seminar s JOIN g8_termin t on s.seminarnummer = t.seminarnummer
+GROUP BY seminarnummer;
+
+SELECT Seminarummer, COUNT(Seminarummer) as Teilnehmeranzahl
+FROM g8_buchen b JOIN g8_seminar s on b.seminarnummer = s.seminarnummer
+GROUP BY(Seminarnummer) 
+
+SELET Seminarummer, , MAX()
+
+
 
 
