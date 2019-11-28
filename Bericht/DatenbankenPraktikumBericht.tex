@@ -6,8 +6,16 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
 \author{Julian Sobott (76011), David Sugar (76050), Lukas Mendel (76009)}
 \title{Bericht Datenbank Praktikum}
+
+\lstset{
+	language=sql,
+	tabsize=4,
+	keywordstyle=\color{blue}
+}	
 \begin{document}
 \maketitle
 \tableofcontents
@@ -55,6 +63,10 @@ wird\_gehalten\_an = (seminar x termin)
 \subsubsection{Relationen}
 referent = (\underline{RID:INTEGER}, email: VARCHAR, name: VARCHAR, vorname: VARCHAR)
 
+ExternerReferent(\underline{RID:INTEGER}, plz: VARCHAR, ort: VARCHAR, strasse: VARCHAR, hnr: VARCHAR)
+
+IntererReferent (\underline{RID:INTEGER}, dienstzimmer: VARCHAR, nebenstellnummer: Integer) 
+
 seminarthema = (\underline{STHEMAID:INTEGER}, ANZUNTERICHTSEINHEITEN:INTEGER, KURZBESCHREIBUNG:VARCHAR, MAXTEILNEHMERANZ:INTEGER, MINTEILNEHMERANZ:INTEGER, PREIS:FLOAT, TITEL:VARCHAR, LEITER:INTEGER)
 
 anbieten = (\underline{REFERENTID:INTEGER, SEMINARTHEMAID:INTEGER})
@@ -74,9 +86,28 @@ $seminarthema\vert_{LEITER} \subseteq refernet\vert_{RID}$
 
 $anbieten\vert_{REFERENTID} \subseteq refernet\vert_{RID}$
 
-$anbieten\vert_{SEMINARTHEAID} \subseteq seminarthema\vert_{STHEMAID}$
+$anbieten\vert_{SEMINARTHEMAID} \subseteq seminarthema\vert_{STHEMAID}$
 
+$seminar\vert_{SEMINARTHEMAID} \subseteq seminarthema\vert_{STHEMAID}$
 
+$termin\vert_{SEMINARID} \subseteq seminar\vert_{SEMINARNUMMER}$
 
+$buchen\vert_{KUNDENID} \subseteq kunde\vert_{KUNDENID}$
+
+$buchen\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
+
+$warteliste\vert_{KUNDENID} \subseteq kunde\vert_{KUNDENID}$
+
+$warteliste\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
+
+\subsection{c)}
+
+\lstinputlisting{../create_table_statements.sql}
+
+\section{2}
+\lstinputlisting{../insert_table_statements.sql}
 
 \end{document}
+
+
+
