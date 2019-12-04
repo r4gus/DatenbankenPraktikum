@@ -125,6 +125,32 @@ $warteliste\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
 \section{Aufgabe 3}
 \lstinputlisting{../SQL_Abfragen.sql}
 
+\section{Aufgabe 4}
+\subsection{a)}
+
+
+\begin{figure}[ht!]
+	\includegraphics[scale=0.6]{Bilder/diagram02.PNG}
+	\caption{OOM Modell}
+	\label{er:1}
+\end{figure}
+
+Da Vererbung so nicht in einem ER-Modell möglich ist, haben wir eine Anpassung vorgenommen. Ein Interner/Externer Referent hat jeweils noch einen Verweis auf den Eintrag von Referent.
+Außerdem haben wir statt einer Klasse Buchung eine Beziehung buchen mit den Attributen aus der Klasse.
+
+\subsection{c)}
+
+Ein \texttt{Referent} kann 0 Seminarthemen leiten, da er auch nur Seminare anbieten kann oder beliebig viele da hier keine Beschränkung vorgegeben war. 
+Laut Aufgabe kann ein Seminar von genau einem Referent geleitet werden aber mehrere Anbieter haben. Ein Referent kann gleichzeitig Anbieter und Leiter sein.
+
+Ein Seminarthema kann 0 Seminare haben, um sicherzustellen, dass zur Anmeldung nicht schon ein Seminar eingetragen werden muss. Es kann aber im Laufe mehrere Seminare haben.
+In einem Seminar kann nur genau ein Seminarthema behandelt werden.
+
+Ein Seminar kann an mehreren Terminen statt finden. Muss aber an mindestens eins. Ein Termin kann nur zu genau einem Seminar gehören.
+
+Kunden können angelegt werden ohne an einem Seminar teilzunehmen oder auf einer Warteliste zu stehen. Deshalb die 0 Kardinalitäten. Im Laufe können sie aber an beliebig vielen Seminaren teilnehmen oder auf Wartelisten stehen. In die andere Richtung gilt genau das gleiche.
+
+
 \end{document}
 
 
