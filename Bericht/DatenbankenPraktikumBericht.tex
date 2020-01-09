@@ -34,16 +34,49 @@
 \tableofcontents
 
 \newpage
-\section{Aufgabe 1}
-\subsection{a)}
-
+\section{Aufgabe 1: Entwurf und Implementierung des Datenmodells}
+\subsection{a) ERM}
 
 \begin{figure}[ht!]
 	\includegraphics[scale=0.2]{Bilder/ER-Modell.PNG}
 	\caption{ER-Modell Seminarverwaltung}
 	\label{er:1}
 \end{figure}
+
+\subsubsection{Beschreibung des Modells}
+
+\textbf{is\_a Beziehung zwischen Referenten:} Aufgrund der Tatsache, dass alle Referenten sowohl gemeinsame als auch verschiedene Attribute haben, 
+haben wir uns für eine disjunkte Spezialisierung entschieden. Das heißt die gemeinsamen Attribute sind in der 
+generellen Entity Referent und nur die speziellen Attribute sind in den Spezialisierungen Externer Referent und
+Interner Referent.
+\\
+\textbf{Beziehung zwischen Referent und Seminarthema:} Da zwischen einem Seminar leiten und einem Seminar anbiten 
+unterschieden wird, haben wir uns für zwei Relationen zwischen Referent und Seminarthema entschieden.
+\\
+\textbf{Beziehung zwischen Seminar und Kunde:} Selbiges gilt in dieser Beziehung. Ein Kunde kann sowohl ein Seminar buchen 
+als auch in einer Warteliste landen.
+\\
+\textbf{Beziehung zwischen Seminarthema und Seminar:} Es kann mehrere Veranstaltungen (Seminare) zu einem Seminarthema geben. Wobei ein Seminar immer nur über ein Seminarthema geht.
+\\
+\textbf{Beziehung zwischen Seminar und Termin:} Da ein Seminar an mehreren Terminen stattfinden kann, wurde der Termin in eine extra Entity ausgelagert.
+
+
+\subsubsection{Unterschiede zum UML Modell}
+
+\begin{itemize}
+
+\item Im UML Diagramm wurde das Listenmodell zwischen Seminar und Termin verwendet. Dies ist im ERM aber nicht möglich und ist stattdessen eine Relation.
+\item Die Beziehung zwischen Seminarthema und Seminar ist die gleiche, nur statt Exemplartyp wurde eine Relation verwendet.
+\item Im UML wird mithilfe von Vererbung eine Klasse um die benötigten Attribute erweitertt, um eine Spezialisierung zu erreichen.
+ Im ERM hingegen wird über eine is\_a Beziehung eine Spezialisierung realisiert.
+\item Im UML wurde eine Koordinatorklasse für die Buchungen verwendet. Im ERM hingegen wird hier eine Relation mit Attributen verwendet.
+\item Anstatt der \textit{ordered} Constraint wird im ERM eine Relation genommen, die das Datum speichert. Durch das Datum kann eine Ordnung hergestellt werden.
+
+\end{itemize}
+
+
 \newpage
+
 \subsubsection{Entities}
 seminar = (\{\underline{SEMINARNUMMER:INTEGER}\})
 
@@ -74,8 +107,8 @@ warteliste = (kunde x seminar, POSITION:INTEGER)
 wird\_gehalten\_an = (seminar x termin)
 
 
-\subsection{b)}
-\subsubsection{Relationen}
+\subsection{b) Relationales Modell}
+\subsubsection{Relations}
 referent = (\underline{RID:INTEGER}, email: VARCHAR, name: VARCHAR, vorname: VARCHAR)
 
 ExternerReferent(\underline{RID:INTEGER}, plz: VARCHAR, ort: VARCHAR, strasse: VARCHAR, hnr: VARCHAR)
@@ -115,17 +148,17 @@ $warteliste\vert_{KUNDENID} \subseteq kunde\vert_{KUNDENID}$
 
 $warteliste\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
 
-\subsection{c)}
+\subsection{c) SQL-Staments: create tables}
 
 \lstinputlisting{../create_table_statements.sql}
 
-\section{Aufgabe 2}
+\section{Aufgabe 2: SQL-Statements für das Einfügen von Datensätzen}
 \lstinputlisting{../insert_table_statements.sql}
 
-\section{Aufgabe 3}
+\section{Aufgabe 3: SQL-Statements für Datenabfrage}
 \lstinputlisting{../SQL_Abfragen.sql}
 
-\section{Aufgabe 4}
+\section{Aufgabe 4: }
 \subsection{a)}
 
 
@@ -134,6 +167,10 @@ $warteliste\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
 	\caption{OOM Modell}
 	\label{er:1}
 \end{figure}
+
+% Beschreibung des ERM
+
+
 
 Da Vererbung so nicht in einem ER-Modell möglich ist, haben wir eine Anpassung vorgenommen. Ein Interner/Externer Referent hat jeweils noch einen Verweis auf den Eintrag von Referent.
 Außerdem haben wir statt einer Klasse Buchung eine Beziehung buchen mit den Attributen aus der Klasse.
