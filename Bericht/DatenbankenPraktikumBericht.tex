@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage[T1]{fontenc}
@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{upquote}
 \author{Julian Sobott (76511), David Sugar (76050), Lukas Mendel (76509)}
 \title{Bericht Datenbank Praktikum}
 
@@ -22,12 +23,12 @@
  }
 
 
-
 \lstset{
 	language=sql,
 	tabsize=4,
 	keywordstyle=\color{blue},
-	breaklines=true
+	breaklines=true,
+        moredelim=[is][\underbar]{@}{@}
 }	
 \begin{document}
 \maketitle
@@ -45,56 +46,61 @@
 \end{figure}
 \newpage
 \subsubsection{Entities}
-seminar = (\{\underline{SEMINARNUMMER:INTEGER}\})
+\begin{lstlisting}[]
+seminar = ({@seminarnummer@:Integer})
 
-termin  = (\{\underline{TERMINID:INTEGER}, DATUM:DATE, VON:DATETIME, BIS:DATETIME\})
+termin = ({@terminid@:Integer, datum:Date, von:DateTime, bis:DateTime})
 
-kunde   = (\{\underline{KUNDENID:INTEGER}, TELEFON:VARCHAR, NAME:VARCHAR, FAX:VARCHAR, EMAIL:VARCHAR, ADRESSE:(PLZ:VARCHR, ORT:VARCHAR, HNR:VARCHAR, STR:VARCHAR)\})
+kunde = ({@kundenid@:Integer, telefon:Varchar, name:Varchar, fax:Varchar, email:Varchar, adresse:(plz:Varchar, ort:Varchar, hnr:Varchar, str:Varchar)})  
 
-referent = (\{\underline{RID:INTEGER}, email: VARCHAR, name: VARCHAR, vorname: VARCHAR\})
+referent = ({@rid@:Integer, email:Varchar, name:Varchar, vorname:Varchar})
 
-seminarthema = (\underline{STHEMAID:INTEGER}, ANZUNTERICHTSEINHEITEN:INTEGER, KURZBESCHREIBUNG:VARCHAR, MAXTEILNEHMERANZ:INTEGER, MINTEILNEHMERANZ:INTEGER, PREIS:FLOAT, TITEL:VARCHAR\})
+seminarthema = ({@sthemaid@:Integer, anzunterichtseinheiten:Integer, kurzbeschreibung:Varchar, maxteilnehmeranz:Integer, minteilnehmeranz:Integer, preis:Float, titel:Varchar})
 
-externerReferent = (\{\underline{RID:INTEGER},adresse: (plz: VARCHAR, ort: VARCHAR, strasse: VARCHAR, hnr: VARCHAR)\} is\_a referent)
+externerReferent = ({@rid@:Integer, adresse:(strasse:Varchar, hnr:Varchar, plz:Varchar, ort:Varchar)
 
-internerReferent = (\{\underline{RID:INTEGER},dienstzimmer: VARCHAR, nebenstellnummer: Integer\} is\_a referent)
+internerReferent = ({@rid@:Integer, dienstzimmer:Varchar, nebenstellnummer:Integer})
+\end{lstlisting}
 
 \subsubsection{Relations}
+\begin{lstlisting}[]
+leiten = (referent x seminarthema)
 
-leiten = (referent X seminarthema)
+anbieten = (referent x seminarthema)
 
-anbieten = (referent X seminarthema)
+gehört_zu = (seminarthema x seminar)
 
-gehört\_zu = (seminarthema X seminar)
+buchen = (seminar x kunke, buchungsdatum:Date, zustand:Varchar, rabatt:Float)
 
-buchen = (seminar x kunke, BUCHUNGSDATUM:DATE, ZUSTAND:VARCHAR, RABATT:FLOAT)
+warteliste = (kunde x seminar, datum:Date)
 
-warteliste = (kunde x seminar, POSITION:INTEGER)
+wird_gehalten_an = (seminar x termin)
+\end{lstlisting}
 
-wird\_gehalten\_an = (seminar x termin)
-
-
+\newpage
 \subsection{b)}
 \subsubsection{Relationen}
-referent = (\underline{RID:INTEGER}, email: VARCHAR, name: VARCHAR, vorname: VARCHAR)
+\begin{lstlisting}[]
+referent = (@rid@:Integer, email:Varchar, name:Varchar, vorname:Varchar)
 
-ExternerReferent(\underline{RID:INTEGER}, plz: VARCHAR, ort: VARCHAR, strasse: VARCHAR, hnr: VARCHAR)
+externerReferent = (@rid@:Integer, strasse:Varchar, hnr:Varchar, plz:Varchar, ort:Varchar)
 
-IntererReferent (\underline{RID:INTEGER}, dienstzimmer: VARCHAR, nebenstellnummer: Integer) 
+internerReferent = (@rid@:Integer, dienstzimmer:Varchar, nebenstellnummer:Integer)
 
-seminarthema = (\underline{STHEMAID:INTEGER}, ANZUNTERICHTSEINHEITEN:INTEGER, KURZBESCHREIBUNG:VARCHAR, MAXTEILNEHMERANZ:INTEGER, MINTEILNEHMERANZ:INTEGER, PREIS:FLOAT, TITEL:VARCHAR, LEITER:INTEGER)
+seminarthame = (@sthemaid@:Integer, anzunterichtseinheiten:Integer, kurzbeschreibung:Varchar, maxteilnehmeranz:Integer, minteilnehmeranz:Integer, preis:Float, titel:Varchar, leiter:Integer)
 
-anbieten = (\underline{REFERENTID:INTEGER, SEMINARTHEMAID:INTEGER})
+anbieten = (@referentid@:Integer, seminarthemaid:Integer)
 
-seminar = (\underline{SEMINARNUMMER:INTEGER}, SEMINARTHEMAID:INTEGER)
+seminar = (@seminarnummer@:Integer, seminarthemaid:Integer)
 
-termin = (\underline{TERMINID:INTEGER}, VON:DATETIME, BIS:DATETIME, DATUM:DATE, SEMINARID:INTEGER)
+termin = (@terminid@:Integer, von:Datetime, bis:Datetime, datum:Date, seminarid:Integer)
 
-kunde   = (\underline{KUNDENID:INTEGER}, TELEFON:VARCHAR, NAME:VARCHAR, FAX:VARCHAR, EMAIL:VARCHAR, PLZ:VARCHR, ORT:VARCHAR, HNR:VARCHAR, STR:VARCHAR)
+kunde = (@kundenid@:Integer, telefon:Varchar, name:Varchar, fax:Varchar, email:Varchar, plz:Varchar, ort:Varchar, hnr:Varchar, str:Varchar)
 
-buchen = (\underline{KUNDENID:INTEGER, SEMINARNR:INTEGER}, BUCHUNGSDATUM:DATE, ZUSTAND:VARCHAR, RABATT:FLOAT)
+buchen = (@kundenid@:Integer, seminarnr:Integer, buchungsdatum:Date, zustand:Varchar, rabatt:Float)
 
-warteliste = (\underline{KUNDENID:INTEGER, SEMINARNR:INTEGER}, POSTION:INTEGER)
+warteliste = (@kundenid@:Integer, seminarnr:Integer, datum:Date)
+\end{lstlisting}
 
 \subsubsection{Referenzen}
 $seminarthema\vert_{LEITER} \subseteq refernet\vert_{RID}$
@@ -115,6 +121,7 @@ $warteliste\vert_{KUNDENID} \subseteq kunde\vert_{KUNDENID}$
 
 $warteliste\vert_{SEMINARNR} \subseteq seminar\vert_{SEMINARNR}$
 
+\newpage
 \subsection{c)}
 
 \lstinputlisting{../create_table_statements.sql}
