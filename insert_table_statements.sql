@@ -52,11 +52,11 @@ values
 (3, 2, '15/1/1999', 'offen', 0.0),
 (1, 3, '14/1/1999', 'berechnet', 0.7);
 
-INSERT INTO g8_warteliste (kundenid, seminarnummer, position)
+INSERT INTO g8_warteliste (kundenid, seminarnummer, datum)
 values
-(1,1,1),
-(2,1,2),
-(3,2,1);
+(1,1,'17/01/1998'),
+(2,1,'17/01/1999'),
+(3,2,'19/01/199');
 
 
 
