@@ -79,7 +79,7 @@ Ort VARCHAR(50),
 FOREIGN KEY (RID) REFERENCES g8_referent(RID)
 );
 
-CREATE TABLE g8_InternerRefrent(
+CREATE TABLE g8_InternerReferent(
 
 RID int PRIMARY KEY,
 Dienstnummer VARCHAR(30),
