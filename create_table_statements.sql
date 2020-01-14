@@ -62,7 +62,7 @@ CREATE TABLE g8_buchen (
 CREATE TABLE g8_warteliste (
 	kundenid INTEGER REFERENCES g8_kunde(kundenid),
 	seminarnummer INTEGER REFERENCES g8_seminar(seminarnummer),
-	position INTEGER,
+	datum Date,
 	PRIMARY KEY (kundenid, seminarnummer)
 );
 
