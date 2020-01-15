@@ -16,22 +16,23 @@ GROUP BY s.seminarnummer;
 SELECT seminarnummer, count(*)
 FROM g8_warteliste
 GROUP BY seminarnummer
-HAVING count(*) = (
-    SELECT max(anz) as length
-    FROM (
-        SELECT w.seminarnummer, count(*) as anz
-        FROM g8_warteliste w
-        GROUP BY w.seminarnummer
-        ) as sa
+HAVING count(*) >= ALL(
+    SELECT count(*)
+    FROM g8_seminar s JOIN g8_warteliste g8w on s.seminarnummer = g8w.seminarnummer
+    GROUP BY s.seminarnummer
     );
 
--- e) Referenten mit Anzahl Teilnehmer TODO
-SELECT name, kurzbeschreibung, count(s.seminarnummer), s.seminarnummer
+
+-- e) Referenten mit Anzahl Teilnehmer
+SELECT name, count(s.seminarnummer)
 FROM g8_referent r JOIN g8_seminarthema st on r.rid = st.leiter JOIN g8_seminar s on st.sthemaid = s.sthemaid
     join g8_buchen b on s.seminarnummer = b.seminarnummer
-GROUP BY s.seminarnummer, r.name, kurzbeschreibung, st.sthemaid;
+GROUP BY r.rid, r.name;
 
-SELECT name, titel, st.sthemaid, s.seminarnummer, b.kundenid
-FROM g8_referent r JOIN g8_seminarthema st on r.rid = st.leiter JOIN
-    g8_seminar s on st.sthemaid = s.sthemaid JOIN g8_buchen b on s.seminarnummer = b.seminarnummer
-GROUP BY st.sthemaid, titel, name, s.seminarnummer, b.kundenid;
+
+-- f) Referenten mit Einnahmen
+
+SELECT name, count(s.seminarnummer), sum(st.preis)
+FROM g8_referent r JOIN g8_seminarthema st on r.rid = st.leiter JOIN g8_seminar s on st.sthemaid = s.sthemaid
+    join g8_buchen b on s.seminarnummer = b.seminarnummer
+GROUP BY r.name;

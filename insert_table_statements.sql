@@ -4,7 +4,7 @@ INSERT INTO g8_referent(email, vorname, name) values
 	('lukas.mendel@wtf.de', 'Lukas', 'Mendel'),
 	('gregor.grambow@wtf.de', 'Gregor', 'Grambow');
 
-INSERT INTO  g8_internerreferent(rid, dienstnummer, nebenstellennummer) VALUES (1, 1, 1);
+INSERT INTO  g8_internerreferent(rid, dienstnummer, nebenstellennummer) VALUES (4, 1, 1);
 
 INSERT INTO g8_externerreferent(rid, fax, telefon, plz, strasse, hnr, ort) values
 	((select rid from g8_referent where name = 'Sugar' and vorname = 'David'), '1234', '1234', '73434', 'Aalen', 'Uni-Str', '111'),
@@ -22,13 +22,13 @@ values (1), (2), (3), (1), (3);
 
 INSERT INTO g8_termin (von, bis, datum, seminarnummer)
 values
-('09:30', '13:00', '18/1/1999', 1),
-('09:30', '13:00', '19/1/1999', 2),
-('09:30', '13:00', '20/1/1999', 3),
-('09:30', '13:00', '21/1/1999', 4),
-('09:30', '13:00', '22/1/1999', 5),
-('10:30', '18:45', '18/1/2050', 1),
-('10:30', '18:45', '19/1/2050', 5);
+('09:30', '13:00', '1999-12-01', 1),
+('09:30', '13:00', '1999-12-01', 2),
+('09:30', '13:00', '1999-12-01', 3),
+('09:30', '13:00', '1999-12-01', 4),
+('09:30', '13:00', '1999-12-01', 5),
+('10:30', '18:45', '1999-12-01', 1),
+('10:30', '18:45', '1999-12-01', 5);
 
 INSERT INTO g8_kunde (telefon, name, fax, email, plz, ort, hnr, str)
 values
@@ -40,19 +40,19 @@ values
 
 INSERT INTO g8_buchen (kundenid, seminarnummer, datum, zustand, rabatt)
 values
-(1, 1, '13/1/1999', 'gezahlt', 0.0),
-(1, 2, '13/1/1999', 'gezahlt', 0.0),
-(2, 1, '13/1/1999', 'berechnet', 0.3),
-(2, 3, '13/1/1999', 'gezahlt', 0.0),
-(3, 3, '14/1/1999', 'gebucht', 0.0),
-(3, 4, '14/1/1999', 'gezahlt', 0.0),
-(4, 3, '14/1/1999', 'gebucht', 0.0),
-(5, 3, '14/1/1999', 'gebucht', 0.0),
-(3, 2, '15/1/1999', 'offen', 0.0),
-(1, 3, '14/1/1999', 'berechnet', 0.7);
+(1, 1, '1999-12-01', 'gezahlt', 0.0),
+(1, 2, '1999-12-01', 'gezahlt', 0.0),
+(2, 1, '1999-12-01', 'berechnet', 0.3),
+(2, 3, '1999-12-01', 'gezahlt', 0.0),
+(3, 3, '1999-12-01', 'gebucht', 0.0),
+(3, 4, '1999-12-01', 'gezahlt', 0.0),
+(4, 3, '1999-12-01', 'gebucht', 0.0),
+(5, 3, '1999-12-01', 'gebucht', 0.0),
+(3, 2, '1999-12-01', 'offen', 0.0),
+(1, 3, '1999-12-01', 'berechnet', 0.7);
 
 INSERT INTO g8_warteliste (kundenid, seminarnummer, datum)
 values
-(1,1,'17/01/1998'),
-(2,1,'17/01/1999'),
-(3,2,'19/01/199');
+(1,1,'1999-12-01'),
+(2,1,'1999-12-01'),
+(3,2,'1999-12-01');
